@@ -1,5 +1,25 @@
 include constants.fs
 
+: xt1_bq 0 floats + ;
+: yt1_bq 1 floats + ;
+: xt2_bq 2 floats + ;
+: yt2_bq 3 floats + ;
+: fltcon_bq 4 floats + ;
+: resonance_bq 5 floats + ;
+: alpha_bq 6 floats + ;
+: beta_bq 7 floats + ;
+: gamma_bq 8 floats + ;
+: denom_bq 9 floats + ;
+: b0_bq 10 floats + ;
+: b1_bq 11 floats + ;
+: b2_bq 12 floats + ;
+: a0_bq 13 floats + ;
+: a1_bq 14 floats + ;
+: a2_bq 15 floats + ;
+
+: make_biquad_struct
+  create 16 floats allot ;
+
 : calc_fltcon ( cutoff -- fcon )
   2PI INV_SAMPLE_RATE f* f* ;
 
@@ -21,69 +41,49 @@ include constants.fs
   fover fover f+ frot frot f-
   sq fswap sq f+ fsqrt ;
 
-: fltcon 0 floats + ;
-: resonance 1 floats + ;
-: alpha 2 floats + ;
-: beta 3 floats + ;
-: gamma 4 floats + ;
-: denom 5 floats + ;
-: b0 6 floats + ;
-: b1 7 floats + ;
-: b2 8 floats + ;
-: a0 9 floats + ;
-: a1 10 floats + ;
-: a2 11 floats + ;
-: xnm1 12 floats + ;
-: xnm2 13 floats + ;
-: ynm1 16 floats + ;
-: ynm2 14 floats + ;
-
-: make_biquad_struct
-  create 15 floats allot ;
-
 : biquad_compute { F: sig reinit struct -- sig-out }
   \ the actual transformative equation:
-  struct b0 f@ sig f*
-  struct b1 f@ struct xnm1 f@ f* f+
-  struct b2 f@ struct xnm2 f@ f* f+
-  struct a1 f@ struct ynm1 f@ f* f-
-  struct a2 f@ struct ynm2 f@ f* f-
-  struct a0 f@ f/
+  struct b0_bq f@ sig f*
+  struct b1_bq f@ struct xt1_bq f@ f* f+
+  struct b2_bq f@ struct xt2_bq f@ f* f+
+  struct a1_bq f@ struct yt1_bq f@ f* f-
+  struct a2_bq f@ struct yt2_bq f@ f* f-
+  struct a0_bq f@ f/
   ( sig-out_now_on_stack )
   fdup ( sig-out sig-out )
   \ update state:
-  struct xnm1 f@ struct xnm2 f!
-  sig struct xnm1 f!      \ xn (sig) --> xnm1
-  struct ynm1 f@ struct ynm2 f!
-  struct ynm1 f! ;  ( sig-out )
+  struct xt1_bq f@ struct xt2_bq f!
+  sig struct xt1_bq f!      \ xn (sig) --> xt1_bq
+  struct yt1_bq f@ struct yt2_bq f!
+  struct yt1_bq f! ;  ( sig-out )
 
 : reinit_biquad { struct -- }
-  0.0e struct xnm1 f!
-  0.0e struct xnm2 f!
-  0.0e struct ynm1 f!
-  0.0e struct ynm1 f! ;
+  0.0e struct xt1_bq f!
+  0.0e struct xt2_bq f!
+  0.0e struct yt1_bq f!
+  0.0e struct yt2_bq f! ;
 
 : biquad_helper { F: sig reinit struct F: res F: flc -- sig-out }
-  res struct resonance f!
-  flc struct fltcon f!
-  res flc calc_alpha struct alpha f!
-  res flc calc_beta struct beta f!
-  flc calc_gamma struct gamma f!
-  struct fltcon f@ struct beta f@ struct gamma f@ struct alpha f@
-  calc_denominator struct denom f!
+  res struct resonance_bq f!
+  flc struct fltcon_bq f!
+  res flc calc_alpha struct alpha_bq f!
+  res flc calc_beta struct beta_bq f!
+  flc calc_gamma struct gamma_bq f!
+  struct fltcon_bq f@ struct beta_bq f@ struct gamma_bq f@ struct alpha_bq f@
+  calc_denominator struct denom_bq f!
   \ put b0 into struct:
-  struct alpha f@ sq struct beta f@ sq f+ 1.5e f*
-  struct denom f@ f/ struct b0 f! 
+  struct alpha_bq f@ sq struct beta_bq f@ sq f+ 1.5e f*
+  struct denom_bq f@ f/ struct b0_bq f! 
   \ put b1 into struct:
-  struct b0 f@ struct b1 f!
+  struct b0_bq f@ struct b1_bq f!
   \ put b2 into struct:
-  0.0e struct b2 f!
+  0.0e struct b2_bq f!
   \ put a0 into struct:
-  1.0e struct a0 f!
+  1.0e struct a0_bq f!
   \ put a1 into struct:
-  -2.0e struct resonance f@ f* struct fltcon f@ fcos f* struct a1 f!
+  -2.0e struct resonance_bq f@ f* struct fltcon_bq f@ fcos f* struct a1_bq f!
   \ put a2 into struct:
-  struct resonance f@ sq struct a2 f!  
+  struct resonance_bq f@ sq struct a2_bq f!  
 
   \ reinit?
   reinit if struct reinit_biquad endif
