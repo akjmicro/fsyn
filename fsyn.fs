@@ -2,7 +2,8 @@
 require constants.fs
 require output.fs
 require generators.fs
+require noise.fs
 require port.fs
 require biquad.fs
-require reson2.fs
-require noise.fs
+require reson.fs
+require allpass.fs
