@@ -7,6 +7,6 @@ usuable for musical applications:
 - reverb
 - larger goal might be to speed up ugen creation by having a plugin
 framework
-  - I'm thinking LV2 for this sepcifically, but could be that I can leverage
+  - I'm thinking LV2 for this specifically, but could be that I can leverage
     some of the things already in things like Sporth.
 
