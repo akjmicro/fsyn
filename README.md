@@ -18,7 +18,7 @@ people to join this effort, it will go faster!
 - Stack-based/Postfix paradigm
 - Small and fast
 - Extensible with C (e.g. the PortMIDI module)
-- Tenatative plans may include ability to host LV2 plugins and script them
+- Tentative plans may include ability to host LV2 plugins and script them
 
 ## Installation
 
