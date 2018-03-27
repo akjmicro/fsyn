@@ -9,6 +9,7 @@ decimal
 : | or ;
 : ^ xor ;
 : sq fdup f* ;
+: fceil 0.5e f+ fround ;
 
 \ definition of 2pi
 pi 2e f* fconstant 2PI

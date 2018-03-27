@@ -15,7 +15,7 @@ begin
   \ reference array for port and portamento call
   port-struct port
   \ route to 'fmamp' variable:
-  fmamp f!  
+  fmamp f!
 
   \ sig for 2nd portamento envelope
   \ sig for portamento envelope 
@@ -26,7 +26,7 @@ begin
   fmamp2 f!
 
   \ FM oscillator:
-  fmamp f@ 0.9e 0.5723e 230e  fm
+  fmamp f@ 0.9e 0.5723e 230e fm
   \ moving pan signal
   0.4e 0.13e sinewave 0.41e f+ panmix
 

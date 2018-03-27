@@ -29,15 +29,15 @@ begin
   saw_signal f!
   \ LEFT CHANNEL:
   saw_signal f@
-  false ap_struct 180e 3.7e sinewave 200e f+ allpass1
-  false ap_struct2 180e 3.72e sinewave 200e f+ allpass1
-  false ap_struct3 180e 3.741e sinewave 200e f+ allpass1
+  false ap_struct 10e 3.7e sinewave 20e f+ allpass1
+  false ap_struct2 10e 3.72e sinewave 20e f+ allpass1
+  false ap_struct3 10e 3.741e sinewave 20e f+ allpass1
   0.1e panmix
   \ RIGHT CHANNEL:
   saw_signal f@
-  false ap_struct4 180e 3.6e sinewave 200e f+ allpass1
-  false ap_struct5 180e 3.62e sinewave 200e f+ allpass1
-  false ap_struct6 180e 3.641e sinewave 200e f+ allpass1
+  false ap_struct4 10e 3.6e sinewave 20e f+ allpass1
+  false ap_struct5 10e 3.62e sinewave 20e f+ allpass1
+  false ap_struct6 10e 3.641e sinewave 20e f+ allpass1
   0.9e panmix
   stereo_out 
   t+ \ advance counter

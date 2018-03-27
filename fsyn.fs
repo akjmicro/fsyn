@@ -7,3 +7,4 @@ require port.fs
 require biquad.fs
 require reson.fs
 require allpass.fs
+require delay.fs
