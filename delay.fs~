@@ -2,6 +2,8 @@
 include constants.fs
 [ENDIF]
 
+\ WARNING: STILL UNDER DEVELOPMENT. Pardon our dust!
+
 variable 4SEC_STORAGE_SIZE
 SAMPLE_RATE f>s 4 * 4SEC_STORAGE_SIZE !
 

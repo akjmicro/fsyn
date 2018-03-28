@@ -1,7 +1,5 @@
 include ../fsyn.fs
 
-\ THIS DOESN'T WORK YET
-
 make_allpass_struct ap_struct
 make_allpass_struct ap_struct2
 ap_struct reinit_allpass
