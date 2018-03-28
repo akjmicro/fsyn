@@ -5,60 +5,60 @@ include constants.fs
 \ implementation of 1st-order allpass, and derived low- and highpass
 \ filters as side-effects. These are filters w/o Q (resonant peaks).
 
-: xt1_allpass 0 floats + ;
-: yt1_allpass 1 floats + ;
-: xt2_allpass 2 floats + ;
-: yt2_allpass 3 floats + ;
-: prvcf_allpass 4 floats + ;
-: c_param_allpass 5 floats + ;
+: xt1-allpass 0 floats + ;
+: yt1-allpass 1 floats + ;
+: xt2-allpass 2 floats + ;
+: yt2-allpass 3 floats + ;
+: prvcf-allpass 4 floats + ;
+: c-param-allpass 5 floats + ;
 
-: make_allpass_struct
+: make-allpass-struct
   create 6 floats allot ;
 
-: make_lowpass_struct
-  make_allpass_struct ;
+: make-lowpass-struct
+  make-allpass-struct ;
 
-: make_highpass_struct
-  make_allpass_struct ;
+: make-highpass-struct
+  make-allpass-struct ;
 
-: reinit_allpass { struct -- }
-  0e struct xt1_allpass f!
-  0e struct yt1_allpass f!
-  0e struct xt2_allpass f!
-  0e struct yt2_allpass f!
-  0e struct prvcf_allpass f!
-  0e struct c_param_allpass f! ;
+: reinit-allpass { struct -- }
+  0e struct xt1-allpass f!
+  0e struct yt1-allpass f!
+  0e struct xt2-allpass f!
+  0e struct yt2-allpass f!
+  0e struct prvcf-allpass f!
+  0e struct c-param-allpass f! ;
 
-: calc_c { F: freq -- F: coeff }
+: calc-c { F: freq -- F: coeff }
   pi freq INV_SAMPLE_RATE f* f* ftan { F: factor } 
   factor 1e f- factor 1e f+ f/ ;
 
 : allpass1 { F: sig reinit struct F: cf -- F: output-sig }
   reinit if
-    struct reinit_allpass
+    struct reinit-allpass
   endif
   \ if cutoff frequency has changed:
-  struct prvcf_allpass f@ cf f<> if
-    cf calc_c struct c_param_allpass f!
+  struct prvcf-allpass f@ cf f<> if
+    cf calc-c struct c-param-allpass f!
   endif
-  struct c_param_allpass f@ { F: c-factor }
+  struct c-param-allpass f@ { F: c-factor }
   c-factor sig f*
-  struct xt1_allpass f@ f+
-  c-factor struct yt1_allpass f@ f* f- { F: y }
+  struct xt1-allpass f@ f+
+  c-factor struct yt1-allpass f@ f* f- { F: y }
   \ UPDATE:
-  cf struct prvcf_allpass f!
-  y struct yt1_allpass f!
-  sig struct xt1_allpass f!
+  cf struct prvcf-allpass f!
+  y struct yt1-allpass f!
+  sig struct xt1-allpass f!
   y ;
 
 : lowpass1 { F: sig reinit struct F: cf -- F: output-sig }
   reinit if
-    struct reinit_allpass
+    struct reinit-allpass
   endif
   sig sig reinit struct cf allpass1 f+ 0.5e f* ;
 
 : highpass1 { F: sig reinit struct F: cf -- F: output-sig }
   reinit if
-    struct reinit_allpass
+    struct reinit-allpass
   endif
   sig sig reinit struct cf allpass1 f- 0.5e f* ;

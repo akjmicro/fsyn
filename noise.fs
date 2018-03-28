@@ -18,3 +18,6 @@ variable last-num
 : noise ( amp -- sig )
   xorshift-rand s>f div-by @ s>f f/
   1.0e f- f* ;
+
+: randint ( range -- int )
+  s>f f2/ fdup noise f+ floor f>s ;
