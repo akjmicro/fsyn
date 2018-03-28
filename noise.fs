@@ -17,4 +17,4 @@ variable last-num
 
 : noise ( amp -- sig )
   xorshift-rand s>f div-by @ s>f f/
-  1e f- f* ;
+  1.0e f- f* ;

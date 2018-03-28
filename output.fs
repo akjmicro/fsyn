@@ -1,4 +1,6 @@
+[IFUNDEF] 2PI
 include constants.fs
+[ENDIF]
 
 \ setup timestamp; unit will be samples.
 variable sample_clock

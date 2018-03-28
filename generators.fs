@@ -1,3 +1,7 @@
+[IFUNDEF] 2PI
+include constants.fs
+[ENDIF]
+
 \ just to be clear, we're using decimal
 decimal
 

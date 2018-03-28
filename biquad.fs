@@ -1,4 +1,6 @@
+[IFUNDEF] 2PI
 include constants.fs
+[ENDIF]
 
 : xt1_bq 0 floats + ;
 : yt1_bq 1 floats + ;

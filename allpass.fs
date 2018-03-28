@@ -1,4 +1,6 @@
+[IFUNDEF] 2PI
 include constants.fs
+[ENDIF]
 
 \ implementation of 1st-order allpass, and derived low- and highpass
 \ filters as side-effects. These are filters w/o Q (resonant peaks).

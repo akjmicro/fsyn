@@ -1,4 +1,6 @@
+[IFUNDEF] 2PI
 include constants.fs
+[ENDIF]
 
 \ WARNING: STILL UNDER DEVELOPMENT. Pardon our dust!
 
@@ -29,8 +31,8 @@ SAMPLE_RATE f>s 4 * 4SEC_STORAGE_SIZE !
   delay-struct write-position loop-size mod floats + 2 floats +
   f!
   \ increment write-position
-  \ \write-position 1 floats + loop-size mod
-  t floats loop-size mod
+  \ write-position 1 + loop-size mod
+  t loop-size mod
   delay-struct set-write-position
   sig ;
 

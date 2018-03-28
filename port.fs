@@ -1,4 +1,6 @@
+[IFUNDEF] 2PI
 include constants.fs
+[ENDIF]
 
 \ A portamento can be roughly done by grabbing and saving a previous sample,
 \ considering that a starting point for the next sample 'target', and making
