@@ -21,7 +21,8 @@ variable rchan
 : clear_channels
   0e lcset 0e rcset ;
 : t+ 1 sample_clock +!  \ advance the clock
-  clear_channels ;
+  clear_channels 
+  reset-phasor-count ;
 
 \ sending out mono or stereo
 : scale_output

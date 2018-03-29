@@ -11,10 +11,20 @@ decimal
 : freq2sample_phase ( freq -- sample-phase )
   INV_SAMPLE_RATE f* ;
 
-\ this scales between 0 and 1
+: phasor-pointer
+  phasor-acc-array phasor_count @ floats + ;
+
 : phasor ( freq -- phase )
-  freq2sample_phase t s>f f* 
-  1e fmod ;
+  \ get current phase; wrap around 0-1:
+  freq2sample_phase 
+  \ grab the accumulator value:
+  phasor-pointer f@
+  \ add, wrap-around from 0.0-1.0
+  f+ 1.0e fmod
+  \ write back current value:
+  fdup phasor-pointer f!
+  \ update count reference (this will be reset by the clock advance) :
+  1 phasor_count +! ;
 
 \ a simple metronome trigger:
 : metro ( amp freq -- sig )
@@ -35,7 +45,7 @@ decimal
 \ FM osc; basic carrier/modulator pair
 : fm { F: amp F: index F: mod_ratio F: carrier_freq -- sig }
   index carrier_freq mod_ratio f* sinewave
-  carrier_freq phasor f+ 1e fmod sine amp f* ;
+  carrier_freq phasor f+ 1.0e fmod sine amp f* ;
 
 \ normalizing factor
 : find_saw_normalizing_factor ( num_harms -- ans )

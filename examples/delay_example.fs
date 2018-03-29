@@ -2,7 +2,7 @@ include ../fsyn.fs
 
 
 \ amp envelope stuff:
-0.04e 0.4e create-port-struct port-struct
+0.01e 0.4e create-port-struct port-struct
 fvariable fmamp 0e fmamp f!
 
 \ delay setup:
@@ -18,7 +18,7 @@ lpstruct reinit-allpass
 \ random pitch setup:
 create pitch-choices 120e f, 140e f, 105e f, 160e f,
 fvariable current-pitch current-pitch 120e f!
-0.06e 0.1e create-port-struct port-struct2
+0.2e 0.2e create-port-struct port-struct2
 
 \ helper word for feedback:
 : add-feedback
@@ -54,7 +54,7 @@ BEGIN
   0.3e 0.6e sinewave 0.4e f+ panmix
 
   \ tap the delay to get a second signal:
-  mydelay 0.3e delay-tap
+  mydelay 0.3e delay-read
   \ send it to the feedback variable for next time:
   fdup delay-hold f!
   0.15e 0.417e sinewave 0.4e f+ panmix
