@@ -10,7 +10,7 @@ begin
   0.3e 1.5e 1e 70e     fm
   0.3e 2.5e 1e 69.971e fm
   f+ f+
-  0 bqstruct 
+  bqstruct false 
   \ resonance:
   0.5e 
   \ cutoff freq:
@@ -24,7 +24,7 @@ begin
   0.3e 1.5e 1e 70.103e fm
   0.3e 2.5e 1e 70.451e fm
   f+ f+
-  0 bqstruct 
+  bqstruct false
   \ resonance:
   0.5e 
   \ cutoff freq:

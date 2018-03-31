@@ -12,7 +12,7 @@ begin
   1e 0.25e metro port-struct port global-env f!
   global-env f@ 0.5e f* noise
     \ biquad data structure
-    0 bqstruct
+    bqstruct false
     \ resonance
     0.94e
     \ cutoff is controlled by grabbing global envelope

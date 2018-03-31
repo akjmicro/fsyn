@@ -10,8 +10,6 @@ fvariable fmamp 0e fmamp f!
 \ delay setup:
 create-delay-line mydelay
 mydelay init-delay-line
-\ place to hold delay feedback:
-fvariable delay-hold 0e delay-hold f!
 
 \ filter setup:
 make-lowpass-struct lpstruct
@@ -21,10 +19,6 @@ lpstruct reinit-allpass
 create pitch-choices 120e f, 140e f, 105e f, 160e f,
 fvariable current-pitch current-pitch 120e f!
 0.1e 0.1e create-port-struct port-struct2
-
-\ helper word for feedback:
-: add-feedback
-delay-hold f@ f* f+ ;
 
 : delay-example
 BEGIN
@@ -48,17 +42,15 @@ BEGIN
   \ boost a bit:
   1.1e f*
   \ pull in audio from previous rounds (feedback)
-  0.75e add-feedback 
+  \ 0.75e add-feedback 
 
   \ write fm signal and feedback variable to delay,
   \ original signal is copied and stays on stack:
   mydelay delay-write
   0.3e 0.6e sinewave 0.4e f+ panmix
 
-  \ tap the delay to get a second signal:
-  mydelay 0.3e delay-read
-  \ send it to the feedback variable for next time:
-  fdup delay-hold f!
+  \ tap the delay to get a second signal; indicate feedback amount, too:
+  mydelay 0.3e 0.75e delay-read
   0.15e 0.417e sinewave 0.4e f+ panmix
 
   stereo_out

@@ -7,7 +7,7 @@ bqstruct reinit_biquad
 begin
   \ 1st voice
   0.5e 51e bl_saw
-  0 bqstruct 
+  bqstruct false 
   \ resonance:
   0.46e 
   \ cutoff freq:
@@ -18,7 +18,7 @@ begin
   
   \ 2nd voice
   0.5e 51.107e bl_saw
-  0 bqstruct 
+  bqstruct false
   \ resonance:
   0.45e 
   \ cutoff freq:
@@ -29,7 +29,7 @@ begin
   
   \ 3rd voice
   0.5e 51.213e bl_saw
-  0 bqstruct 
+  bqstruct false
   \ resonance:
   0.417e 
   \ cutoff freq:
@@ -40,7 +40,7 @@ begin
 
   \ 4th voice
   0.5e 51.011e bl_saw
-  0 bqstruct 
+  bqstruct false
   \ resonance:
   0.5e 
   \ cutoff freq:
@@ -51,7 +51,7 @@ begin
 
   \ 5th voice
   0.5e 51.141e bl_saw
-  0 bqstruct 
+  bqstruct false
   \ resonance:
   0.5e 
   \ cutoff freq:
@@ -62,7 +62,7 @@ begin
 
   \ 6th voice
   0.5e 50.718e bl_saw
-  0 bqstruct 
+  bqstruct false
   \ resonance:
   0.5e 
   \ cutoff freq:

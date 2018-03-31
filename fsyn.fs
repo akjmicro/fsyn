@@ -6,5 +6,5 @@ require noise.fs
 require port.fs
 require biquad.fs
 require reson.fs
-require allpass.fs
 require delay.fs
+require allpass.fs

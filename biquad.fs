@@ -43,7 +43,7 @@ include constants.fs
   fover fover f+ frot frot f-
   sq fswap sq f+ fsqrt ;
 
-: biquad_compute { F: sig reinit struct -- sig-out }
+: biquad_compute { F: sig struct reinit -- sig-out }
   \ the actual transformative equation:
   struct b0_bq f@ sig f*
   struct b1_bq f@ struct xt1_bq f@ f* f+
@@ -65,7 +65,7 @@ include constants.fs
   0.0e struct yt1_bq f!
   0.0e struct yt2_bq f! ;
 
-: biquad_helper { F: sig reinit struct F: res F: flc -- sig-out }
+: biquad_helper { F: sig struct reinit F: res F: flc -- sig-out }
   res struct resonance_bq f!
   flc struct fltcon_bq f!
   res flc calc_alpha struct alpha_bq f!
@@ -91,7 +91,7 @@ include constants.fs
   reinit if struct reinit_biquad endif
   
   \ activate actual transformational equations:  
-  sig reinit struct biquad_compute ;
+  sig struct reinit biquad_compute ;
 
-: biquad { F: sig reinit struct F: res F: cutoff -- sig-out }
-  sig reinit struct res cutoff calc_fltcon biquad_helper ;
+: biquad { F: sig struct reinit F: res F: cutoff -- sig-out }
+  sig struct reinit res cutoff calc_fltcon biquad_helper ;

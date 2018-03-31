@@ -7,7 +7,7 @@ ap_struct reinit_allpass
 begin
   \ some noise
   0.3e noise
-  false ap_struct 
+  ap_struct false
   0.5e phasor sq 10000e f* 20e f+ highpass1
   0.5e panmix
   stereo_out 
