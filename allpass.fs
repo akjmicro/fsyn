@@ -55,7 +55,7 @@ include delay.fs
   sig struct xt1-allpass f!
   y ;
 
-: lowpass1 { F: sig reinit struct F: cf -- F: output-sig }
+: lowpass1 { F: sig struct reinit F: cf -- F: output-sig }
   reinit if
     struct reinit-allpass
   endif
@@ -86,4 +86,3 @@ include delay.fs
 
   \ struct_str evaluate { this_struct }
   noop ;
-  

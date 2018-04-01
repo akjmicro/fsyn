@@ -24,13 +24,13 @@ include constants.fs
   0.0e f, port-factor f, port-factor f, ;
 
 : get-rising-factor ( accum-struct -- float )
-  1 cells + f@ ;
+  1 floats + f@ ;
 
 : get-falling-factor ( accum-struct -- float )
-  2 cells + f@ ;
+  2 floats + f@ ;
 
 : get-accumulated-signal ( accum-struct -- sig )
-  0 cells + f@ ;
+  0 floats + f@ ;
 
 : port ( sig accum_struct -- out-sig )
   dup dup get-accumulated-signal ( ac ac ) ( sig ac@ )

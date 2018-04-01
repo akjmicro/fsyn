@@ -36,12 +36,18 @@ variable rchan 0.0e rchan f!
   0xff and emit           \ send 1st byte (least-significant)
   8 >> 0xff and emit      \ send 2nd byte (16-bit most-significant)
   16 >> 0xff and emit     \ send 3rd byte (24-bit most-significant) 
-  24 >> 0xff and emit ;   \ send 4th byte (32-bit most-significant)
+  24 >> 0xff and emit ;
 
 : sendout-16 ( fval -- )
   scale_output dup
   0xff and emit
   8 >> 0xff and emit ;
  
+: sendout-rev ( fval -- )
+  scale_output dup dup
+  16 >> emit
+  8 >> 0xff and emit
+  0xff and emit ;
+
 : stereo_out ( sig sig -- )
   lcget sendout-32 rcget sendout-32 ;

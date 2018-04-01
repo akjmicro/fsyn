@@ -8,3 +8,6 @@ require biquad.fs
 require reson.fs
 require delay.fs
 require allpass.fs
+
+\ I found that this is needed, for some weird reason, on the RPi:
+\ clear_channels

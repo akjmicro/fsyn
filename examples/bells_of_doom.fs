@@ -2,7 +2,7 @@ include ../fsyn.fs
 
 \ portamento variables
 0.04e 5e create-port-struct port-struct
-0.04e 2e create port-struct port-struct2
+0.04e 2e create-port-struct port-struct2
 
 \ 'patch bay' variables
 variable fmamp 0e fmamp f!

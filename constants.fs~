@@ -10,7 +10,9 @@ pi 2e f* fconstant 2PI
 \ more efficient, for multiplication:
 SAMPLE_RATE 1/f fconstant INV_SAMPLE_RATE
 
-1 31 lshift 1 - s>f fconstant BIT_DEPTH  \ 32-bit audio sample depth
+1 31 lshift 1 - s>f fconstant BIT_DEPTH \ 24-bit audio,
+                                        \ can be 255e or 32767e 
+                                        \ (8-bit or 16-bit audio)
 
 \ useful in normalized frequency calculations:
 2PI SAMPLE_RATE f/ fconstant 2PIDSR

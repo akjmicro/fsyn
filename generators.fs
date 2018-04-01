@@ -27,12 +27,12 @@ decimal
   1 phasor_count +! ;
 
 \ a simple metronome trigger:
-: metro ( amp freq -- sig )
-  phasor 0.0005e f<= if noop else fdrop 0e then ;
+: metro { F: amp F: freq -- sig }
+  freq phasor 0.0005e f<= if amp else 0.0e endif ;
 
 \ a gate signal:
-: gate ( amp width freq -- sig )
-  phasor f>= if noop else fdrop 0e then ;
+: gate { F: amp F: width F: freq -- sig }
+  freq phasor width f<= if amp else 0.0e endif ;
 
 \ phase --> sine
 : sine ( phase -- amp )

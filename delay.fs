@@ -11,23 +11,23 @@ DELAY_HEADER_SIZE 10SEC_STORAGE_SIZE + constant DELAY_STRUCT_SIZE
 
 : init-delay-line { delay-struct -- }
   10SEC_STORAGE_SIZE delay-struct !    \ max loop size
-  0 delay-struct 1 cells + !           \ write-position
-  0.0e delay-struct 2 cells + f!       \ fb holding pen
+  0 delay-struct 1 floats + !           \ write-position
+  0.0e delay-struct 2 floats + f!       \ fb holding pen
   10SEC_STORAGE_SIZE 0 DO
     0.0e delay-struct i floats + DELAY_HEADER_SIZE floats + f!
   LOOP ;
 
 : get-write-position ( delay-struct -- pos )
-  1 cells + @ ;
+  1 floats + @ ;
 
 : set-write-position ( delay-struct -- pos )
-  1 cells + ! ;
+  1 floats + ! ;
 
 : fbcell-read
-  2 cells + f@ ;
+  2 floats + f@ ;
 
 : fbcell-write
-  2 cells + f! ;
+  2 floats + f! ;
 
 : delay-write { F: sig delay-struct -- sig }
   delay-struct @ { loop-size }
