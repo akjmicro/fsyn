@@ -35,8 +35,9 @@ early development phase, there will be more (and fuller examples)
 forthcoming (pun intended!).
 
 Currently, the way to get audio out of Fsyn is to run an example and pipe
-through 'aplay'. For example:
+through 'aplay'. Since the default setting is 32-bit audio at a sample rate
+of 48000, you'd do this, for example:
 
 ```
-   gforth-fast bells_of_doom.fs | aplay -f S24_3LE -r 48000 -c 2
+   gforth-fast bells_of_doom.fs | aplay -f S32_LE -r 48000 -c 2
 ```
