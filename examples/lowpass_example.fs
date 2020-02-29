@@ -1,9 +1,9 @@
 include ../fsyn.fs
 
-make_allpass_struct ap_struct
-ap_struct reinit_allpass
+make-allpass-struct ap_struct
+ap_struct reinit-allpass
 
-: allpass_example
+: lowpass_example
 begin
   \ some noise
   0.3e noise
@@ -16,4 +16,4 @@ begin
   t+ \ advance counter
 again ;
 
-allpass_example
+lowpass_example
