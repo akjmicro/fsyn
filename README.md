@@ -1,3 +1,7 @@
+# Deprecation notice
+
+I leave the notes below for those interested, but note that I plan on continuing any DSP-related development started here in my own RPN, stack-based language, `dclang`: http://github.com/akjmicro/dclang
+
 # Fsyn
 
 Fsyn is a Forth-based synthesis-package, developed using gforth and Linux. 
